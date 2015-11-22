@@ -1,0 +1,24 @@
+FROM l3iggs/archlinux
+
+MAINTAINER nop-90
+
+RUN pacman -Syu --noconfirm
+RUN pacman -S nghttp2 apache php-fpm php-apache php-mcrypt --noconfirm
+RUN systemctl enable php-fpm
+
+RUN mkdir /etc/httpd/logs
+RUN mkdir /etc/httpd/conf/extra/vhosts
+RUN rm -r /etc/httpd/conf/httpd.conf
+COPY assets/httpd.conf /etc/httpd/conf/
+RUN chmod 644 /etc/httpd/conf/httpd.conf
+
+RUN rm -r /etc/php/php.ini
+COPY assets/php.ini /etc/php
+RUN chmod 644 /etc/php/php.ini
+
+COPY assets/entrypoint.sh /sbin
+RUN chmod +x /sbin/entrypoint.sh
+
+EXPOSE 443
+
+ENTRYPOINT ["/sbin/entrypoint.sh"]
