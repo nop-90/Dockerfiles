@@ -2,9 +2,8 @@ FROM l3iggs/archlinux
 
 MAINTAINER nop-90
 
-RUN pacman -Syu --noconfirm
-RUN pacman -S nghttp2 apache php-fpm php-apache php-mcrypt --noconfirm
-RUN systemctl enable php-fpm
+RUN pacman -Syy --noconfirm
+RUN pacman -S openssl nghttp2 apache php-fpm php-mcrypt --noconfirm
 
 RUN mkdir /etc/httpd/logs
 RUN mkdir /etc/httpd/conf/extra/vhosts
