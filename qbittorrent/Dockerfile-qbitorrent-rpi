@@ -1,5 +1,8 @@
 FROM archlinux-rpi2-build
 MAINTAINER nop-90
 COPY assets/qbittorrent.tar.xz /root/
-RUN ["pacman","-U","--noconfirm","qbittorrent.tar.xz"]
-
+RUN ["pacman","-U","--noconfirm","/root/qbittorrent.tar.xz"]
+COPY assets/entrypoint.sh /sbin/
+RUN chmod +x /sbin/entrypoint.sh
+EXPOSE 3458
+ENTRYPOINT ["/sbin/entrypoint.sh"]
