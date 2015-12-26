@@ -1,0 +1,3 @@
+FROM archlinux-rpi2
+MAINTAINER nop-90
+RUN yaourt -S --noconfirm qbittorrent-nox

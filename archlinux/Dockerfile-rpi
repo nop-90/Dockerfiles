@@ -1,0 +1,4 @@
+FROM scratch
+ADD ArchLinuxARM-rpi-2-latest.tar.gz /
+CMD ["/bin/bash","pacman","-Sy"]
+CMD ["/bin/bash"]
