@@ -1,0 +1,12 @@
+FROM archlinux-rpi2
+RUN ["pacman","-Sy"]
+COPY assets/package-query.tar.xz /root/
+COPY assets/yaourt.tar.xz /root/
+RUN ["useradd","-m","build"]
+RUN ["pacman","-S","--noconfirm","base-devel"]
+RUN ["rm","/etc/sudoers"]
+ADD assets/sudoers /etc/
+RUN ["chmod","400","/etc/sudoers"]
+RUN ["pacman","-U","--noconfirm","/root/package-query.tar.xz"]
+RUN ["pacman","-U","--noconfirm","/root/yaourt.tar.xz"]
+CMD ["/bin/bash"]

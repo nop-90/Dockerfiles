@@ -1,3 +1,5 @@
-FROM archlinux-rpi2
+FROM archlinux-rpi2-build
 MAINTAINER nop-90
-RUN yaourt -S --noconfirm qbittorrent-nox
+COPY assets/qbittorrent.tar.xz /root/
+RUN ["pacman","-U","--noconfirm","qbittorrent.tar.xz"]
+

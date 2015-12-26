@@ -6,4 +6,5 @@ Those dockerfiles can be used for any ARMv7 Hard Float platform.
 
 The archlinux dockerfile uses an ArchlinuxARM archive that isn't committed in my repo, you can found it here :
 [Archlinux ARM](http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz)
-All my RaspberryPi Dockerfiles uses my archlinux container as base but you can use them in any archlinux base container
+
+All my RaspberryPi Dockerfiles uses my archlinux container as base but you can use them in any archlinux based container
