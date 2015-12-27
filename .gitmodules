@@ -1,3 +1,0 @@
-[submodule "gogs"]
-	path = gogs
-	url = https://github.com/nop-90/rpi-gogs-raspbian.git
