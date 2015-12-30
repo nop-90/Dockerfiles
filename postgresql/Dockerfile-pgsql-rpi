@@ -1,0 +1,7 @@
+FROM archlinux-rpi2
+MAINTAINER nop-90
+
+RUN pacman -Sy
+RUN pacman -S postgresql
+RUN initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
+ENTRYPOINT ["/sbin/entrypoint.sh"]

@@ -1,0 +1,10 @@
+FROM archlinux-rpi2
+MAINTAINER nop-90
+
+RUN pacman -Sy
+RUN pacman -S --noconfirm git python-flask docker-compose
+WORKDIR /
+RUN git clone https://github.com/francescou/docker-compose-ui.git dc-ui
+WORKDIR /dc-ui
+EXPOSE 5000
+ENTRYPOINT ["/usr/bin/python","main.py"]

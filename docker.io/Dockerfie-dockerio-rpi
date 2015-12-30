@@ -1,0 +1,8 @@
+FROM archlinux-rpi2
+MAINTAINER nop-90
+
+RUN pacman -Sy
+RUN pacman -S --noconfirm go npm git docker
+RUN git clone https://github.com/crosbymichael/dockerui.git
+RUN npm install
+
