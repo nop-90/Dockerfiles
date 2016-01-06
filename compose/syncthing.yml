@@ -1,0 +1,9 @@
+syncthing:
+    image: istepanov/syncthing
+    volumes:
+        - /srv/docker/syncthing/:/home/syncthing/.config/syncthing
+        - /home/nop-90/Sync:/home/syncthing/Sync
+    ports:
+        - "8384:8384"
+        - "22000:22000"
+        - "21027:21027/udp"

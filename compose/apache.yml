@@ -1,0 +1,25 @@
+mysql:
+    image: mariadb
+    volumes:
+        - /srv/docker/mysql:/var/lib/mysql
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=dumbpassword
+phpmyadmin:
+    image: nazarpc/phpmyadmin
+    links:
+        - mysql:mysql
+    ports:
+        - "33061:80"
+apache:
+    image: apache-ssl-h2
+    links:
+        - mysql:mysql
+    volumes:
+      - /srv/http:/srv/http
+      - /var/log:/var/log
+      - /etc/ssl:/etc/ssl
+      - /srv/docker/apache/vhosts:/etc/httpd/conf/extra/vhosts
+    ports:
+      - "443:443"
