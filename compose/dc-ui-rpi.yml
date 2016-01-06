@@ -1,0 +1,7 @@
+dc-ui:
+    image: arch-dc-ui-rpi
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /home/alarm/Dockerfiles/compose:/opt/docker-compose-projects/:ro
+    ports:
+        - "5000:5000"
