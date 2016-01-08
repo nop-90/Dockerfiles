@@ -4,12 +4,6 @@ mysql:
         - /srv/docker/mysql:/var/lib/mysql
     ports:
         - "3306:3306"
-phpmyadmin:
-    image: nazarpc/phpmyadmin
-    links:
-        - mysql:mysql
-    ports:
-        - "33061:80"
 apache:
     image: apache-h2-rpi
     links:

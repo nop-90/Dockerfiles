@@ -5,16 +5,12 @@ RUN pacman -Sy --noconfirm
 RUN pacman -S mariadb --noconfirm
 
 RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
-RUN mysql_install_db --basedir=/usr --datadir=/var/lib/mysql
-RUN /usr/bin/mysqld_safe --datadir=/var/lib/mysql &
-#RUN mysql -u root -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'
-#RUN /usr/bin/mysqladmin -u root password 'root'
+VOLUME ["/var/lib/mysql"]
 
 COPY assets/entrypoint.sh /sbin/
 RUN chmod +x /sbin/entrypoint.sh
 
 ENV TERM xterm
-RUn chown -R mysql:mysql /var/lib/mysql
+RUN chown -R mysql:mysql /var/lib/mysql
 EXPOSE 3306
-VOLUME ["/var/lib/mysql"]
 ENTRYPOINT ["/sbin/entrypoint.sh"]
