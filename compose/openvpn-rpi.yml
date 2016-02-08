@@ -1,0 +1,9 @@
+openvpn:
+    image: openvpn-rpi
+    ports:
+        - "25689:1194/udp"
+    privileged: true
+    cap_add:
+        - NET_ADMIN
+    volumes:
+        - /srv/docker/openvpn/:/etc/openvpn/

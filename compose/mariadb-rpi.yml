@@ -1,6 +1,9 @@
-mysql:
-    image: mariadb-rpi
-    volumes:
-        - /srv/docker/mysql:/var/lib/mysql
-    ports:
-        - "3306:3306"
+version: '2'
+
+services:
+    mysql:
+        image: mariadb-rpi
+        volumes:
+            - /srv/docker/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"

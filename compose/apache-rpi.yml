@@ -1,17 +1,18 @@
-mysql:
-    image: mariadb-rpi
-    volumes:
-        - /srv/docker/mysql:/var/lib/mysql
-    ports:
-        - "3306:3306"
-apache:
-    image: apache-h2-rpi
-    links:
-        - mysql:mysql
-    volumes:
-      - /srv/http:/srv/http
-      - /var/log:/var/log
-      - /etc/ssl:/etc/ssl
-      - /srv/docker/apache/vhosts:/etc/httpd/conf/extra/vhosts
-    ports:
-      - "443:443"
+version: '2'
+
+services:
+    mysql:
+        image: mariadb-rpi
+        volumes:
+            - /srv/docker/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+    apache:
+        image: apache-h2-rpi
+        volumes:
+          - /srv/http:/srv/http
+          - /var/log:/var/log
+          - /etc/ssl:/etc/ssl
+          - /srv/docker/apache/vhosts:/etc/httpd/conf/extra/vhosts
+        ports:
+          - "443:443"

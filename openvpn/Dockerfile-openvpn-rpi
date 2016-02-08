@@ -1,5 +1,12 @@
 FROM archlinux-rpi2
 MAINTAINER nop-90
 
-RUN pacman -S --noconfirm openvpn easy-rsa
+RUN pacman -Syy --noconfirm
+RUN pacman -S --noconfirm openvpn
 
+COPY assets/entrypoint.sh /sbin/
+RUN chmod +x /sbin/entrypoint.sh
+
+VOLUME ["/etc/openvpn"]
+EXPOSE 1194/udp
+ENTRYPOINT ["/sbin/entrypoint.sh"]
