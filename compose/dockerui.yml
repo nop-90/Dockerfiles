@@ -1,5 +1,5 @@
 dockerui:
-    image: dockerui/dockerui
+    image: hypriot/rpi-dockerui
     ports:
         - "9000:9000"
     volumes:
