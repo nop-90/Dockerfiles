@@ -1,11 +1,15 @@
-FROM l3iggs/archlinux
+FROM base/archlinux
 
 MAINTAINER nop-90
 
 RUN pacman -Syy --noconfirm
+RUN pacman --noconfirm -S archlinux-keyring
+RUN pacman -Syu --noconfirm
+RUN pacman-db-upgrade
+RUN pacman -S ca-certificates ca-certificates-mozilla --noconfirm
 RUN pacman -S openssl nghttp2 apache php-fpm php-mcrypt --noconfirm
 
-RUN mkdir /etc/httpd/logs
+RUN mkdir -p /etc/httpd/logs
 RUN mkdir /etc/httpd/conf/extra/vhosts
 RUN rm -r /etc/httpd/conf/httpd.conf
 COPY assets/httpd.conf /etc/httpd/conf/
@@ -17,6 +21,8 @@ RUN chmod 644 /etc/php/php.ini
 
 COPY assets/entrypoint.sh /sbin/
 RUN chmod +x /sbin/entrypoint.sh
+
+RUN pacman -S php-gd --noconfirm
 
 EXPOSE 443
 
