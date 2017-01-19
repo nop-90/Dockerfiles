@@ -1,0 +1,16 @@
+FROM archlinux-rpi2
+MAINTAINER nop-90
+
+RUN pacman -Sy --noconfirm
+RUN pacman -S dnscrypt-proxy bind --noconfirm
+
+RUN rm -r /etc/named.conf
+COPY assets/named.conf /etc/
+RUN chmod 644 /etc/named.conf
+
+COPY assets/entrypoint.sh /sbin/
+RUN chmod +x /sbin/entrypoint.sh
+
+EXPOSE 53
+
+ENTRYPOINT ["/sbin/entrypoint.sh"]

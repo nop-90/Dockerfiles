@@ -1,6 +1,6 @@
 FROM scratch
 ADD ArchLinuxARM-rpi-2-latest.tar.gz /
-RUN sed -i 's/#en_US.UTF-8/g' /etc/locale.gen
+RUN sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 RUN locale-gen
-RUN ["/bin/bash","pacman","-Sy"]
+RUN ["/usr/sbin/pacman","-Sy"]
 CMD ["/bin/bash"]
